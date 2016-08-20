@@ -49,11 +49,18 @@ numStakeHolders=investor_add.length;
 //investemments[entrepreneur]=investor;
 }
 
+function withdrawRefund() { //the entrepreneur winthdraw the money once the investors deposit their funds
+if (msg.sender = entrep.ent_add && this.balance > 0)
+msg.sender.send(this.balance);
+  }
+
 modifier onlyOwner {
     if (msg.sender != curator)
         throw;
     _
 }
+
+
 
 function set_order( bool order_) onlyOwner  constant returns  (bool order_state){
     order=order_;
