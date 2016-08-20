@@ -37,7 +37,7 @@ function investement (){ // constructor set the contract owner who accept the or
 }
 
 function register_stakholders(address[] investor_add ,uint[] investement, uint[] inve_ratios, address entrepreneur_address, uint ratio_entr) onlyOwner{
-
+  //we could replace this function by a add_investor which give the curator the ability to add investors one by one
 
 for (var i=0; i<=  investor_add.length;i++)
 {
@@ -68,7 +68,7 @@ function set_order( bool order_) onlyOwner  constant returns  (bool order_state)
   return order;
  }
 
- event money_sent(address to, uint value);
+ event money_sent(address to, uint value); //evenet to detect the payment operation
 
 
 function send_(uint amount , address to ) {
@@ -105,7 +105,12 @@ balances[msg.sender] += msg.value;
 
 }
 
-function end_investement(){ // the entrepreneur pa back the capital and end the contract
+function end_investement(address entrepreneur){ // the entrepreneur pa back the capital and end the contract
+
+}
+
+function check_promises() constant returns  (bool promises_kept){ //check if the investors sent the promised money
+
 
 }
 
