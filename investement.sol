@@ -9,7 +9,7 @@ address curator; // contract creator
 uint public contract_balance;
 bool order;
 bool issent;
-uint numStakeHolders;
+uint numStakeHolders=0;
 Investor[] list_investor;
 Entrepreneur entrep;
 
@@ -36,7 +36,21 @@ function investement (){ // constructor set the contract owner who accept the or
   contract_balance= this.balance;
 }
 
-function register_stakholders(address[] investor_add ,uint[] investement, uint[] inve_ratios, address entrepreneur_address, uint ratio_entr) onlyOwner{
+function add_investor(address investor_add,uint investement, uint inve_ratios){
+
+  list_investor[list_investor.length]=Investor(investement,investor_add,inve_ratios);
+  list_investor.length++;numStakeHolders++;
+}
+
+function add_entrpreneur(address entrepreneur_address, uint ratio_entr){
+
+  entrep=Entrepreneur(entrepreneur_address,ratio_entr);
+
+}
+
+
+
+function register_stakholders(address[] investor_add ,uint[] investement, uint[] inve_ratios, address entrepreneur_address, uint ratio_entr)  {
   //we could replace this function by a add_investor which give the curator the ability to add investors one by one
 
 for (var i=0; i<=  investor_add.length;i++)
@@ -85,7 +99,7 @@ if (order) { order = false;
 
 function pay_back (){ // pay money back to the investors in accordinance with their ratios.
 //msg.balance;
-uint bal= msg.value; //balance sent by the entrepreneur
+uint profit= msg.value; //balance sent by the entrepreneur
 address ent=msg.sender;
 
  list_investor = investemments[ent] ;
@@ -95,7 +109,7 @@ for (var i=0; i<=  list_investor.length;i++)
 {
   inv_add=  list_investor[i].inv_add ; rat=list_investor[i].ratio;
   //var queue = requestQueue; // stores reference to storage
- send_( ( bal * rat/100),inv_add );
+ send_( ( profit * rat/100),inv_add );
 
 }
 }
