@@ -52,7 +52,7 @@ numStakeHolders=investor_add.length;
 }
 
 function withdrawRefund() { //the entrepreneur winthdraw the money once the investors deposit their funds
-if (msg.sender = entrep.ent_add && this.balance > 0)
+if (msg.sender == entrep.ent_add && this.balance > 0)
 msg.sender.send(this.balance);
   }
 
@@ -101,7 +101,7 @@ for (var i=0; i<=  list_investor.length;i++)
 }
 
 function deposit(address to_entrepreneur){ //investors send the investement to the contract
-balances(msg.sender) += msg.value;
+balances[msg.sender] += msg.value;
 
 }
 
