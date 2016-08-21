@@ -7,6 +7,7 @@ event ev(uint  value, uint  value2);
 
 function giv_array(uint[]  memory_array)
 {
+  //var v = memory_array works
    // global_array= memory_array; works => copies the whole array from memory to storage
    // var g=global_array; then g =memory_array; => won't work generate memory is not implicitly convertible to expected type.Even if g is declared as the same type as memory_array
 var v=global_array;// v is a pointer to global array (data is located in storage not memory)
@@ -32,8 +33,8 @@ delete v; // clears the array, also modifies y
 
 }
 
-function g(uint[] storage storageArray) internal {} // when called g(global_array) handing over a reference to global_array
-function h(uint[] memoryArray) {} // when called h(global_array) it creates an independent, temporary copy in memory
+function g(uint[] storage storageArray) internal {} // when called g(global_array) handing over a reference to global_array=> we could use var V=globalarray then assing V=storageArray
+function h(uint[] memoryArray) {} // when called h(global_array) it creates an independent, temporary copy in memory => could not assing memory var to stored var;
 
 // mapping is a solution to use to avoid this mess with the array size
 
