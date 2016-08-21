@@ -56,16 +56,16 @@ function register_stakholders(address[] investor_add ,uint[] investement, uint[]
 
 var List_inv= list_investor;
 
-for (var i=0; i<=  investor_add.length;i++)
+
+for (var i=0; i<investor_add.length;i++)
 {
   //var queue = requestQueue; // stores reference to storage
-   List_inv[i]=Investor(investement[i],investor_add[i],inve_ratios[i]);
+  List_inv.push(Investor(investement[i],investor_add[i],inve_ratios[i]));
 }
-entrep=Entrepreneur(entrepreneur_address,ratio_entr);
-investemments[entrepreneur_address] = List_inv;
-numStakeHolders=investor_add.length;
-//investemments[entrepreneur]=investor;
-}
+ entrep=Entrepreneur(entrepreneur_address,ratio_entr);
+ investemments[entrepreneur_address] = List_inv;
+ numStakeHolders=List_inv.length;
+ }
 
 function withdrawRefund() { //the entrepreneur winthdraw the money once the investors deposit their funds
 if (msg.sender == entrep.ent_add && this.balance > 0)
