@@ -9,7 +9,7 @@ address curator; // contract creator
 uint public contract_balance;
 bool order;
 bool issent;
-uint public  numStakeHolders;
+uint numStakeHolders=0;
 Investor[] list_investor;
 Entrepreneur entrep;
 
@@ -33,14 +33,13 @@ mapping (address => uint) balances;
 function investement (){ // constructor set the contract owner who accept the order to winthdraw
   curator=msg.sender;
   order = false;
-  contract_balance= 0;
-  numStakeHolders=0;
+  contract_balance= this.balance;
 }
 
 function add_investor(address investor_add,uint investement, uint inve_ratios){
 
-  list_investor[numStakeHolders]=Investor(investement,investor_add,inve_ratios);
-  numStakeHolders++;
+  list_investor[list_investor.length]=Investor(investement,investor_add,inve_ratios);
+  list_investor.length++;numStakeHolders++;
 }
 
 function add_entrpreneur(address entrepreneur_address, uint ratio_entr){
