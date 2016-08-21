@@ -49,7 +49,7 @@ function add_entrpreneur(address entrepreneur_address, uint ratio_entr){
 
 }
 
-
+event registered_investors(address ad, uint invest, uint ratio);
 
 function register_stakholders(address[] investor_add ,uint[] investement, uint[] inve_ratios, address entrepreneur_address, uint ratio_entr)  {
   //we could replace this function by a add_investor which give the curator the ability to add investors one by one
@@ -61,10 +61,12 @@ for (var i=0; i<investor_add.length;i++)
 {
   //var queue = requestQueue; // stores reference to storage
   List_inv.push(Investor(investement[i],investor_add[i],inve_ratios[i]));
+  registered_investors(investement[i],investor_add[i],inve_ratios[i]);
 }
  entrep=Entrepreneur(entrepreneur_address,ratio_entr);
  investemments[entrepreneur_address] = List_inv;
  numStakeHolders=List_inv.length;
+
  }
 
 function withdrawRefund() { //the entrepreneur winthdraw the money once the investors deposit their funds
@@ -129,6 +131,8 @@ function check_promises() constant returns  (bool promises_kept){ //check if the
 
 
 }
+
+
 
 /* Function to recover the funds on the contract */
 function kill() onlyOwner {
