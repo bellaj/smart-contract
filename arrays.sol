@@ -17,17 +17,23 @@ var v=global_array;// v is a pointer to global array (data is located in storage
 /////////////////////////
 //1- use of loop
 for (var i=0; i< memory_array.length ; i++){
- //global_array[i]=given_array[i] // generates a invalid jump exception because the global_array has a size of 0  we need to have enough space to write your value.   we shhould use :
- global_array.push(given_array[i]);
+ //global_array[i]=memory_array[i] // generates a invalid jump exception because the global_array has a size of 0  we need to have enough space to write your value.   we shhould use :
+ v.push(memory_array[i]);
 //// or
-global_array[global_array.length++]=given_array[i]; // It is true, you declared a variable size array but you still need to tell the VM to increase the array size before assign it.
-  ev( memory_array[i],global_array[i]); // to compare the values
+v[v.length++]=memory_array[i]; // It is true, you declared a variable size array but you still need to tell the VM to increase the array size before assign it.
+  ev( memory_array[i],v[i]); // to compare the values
 }
 // use of assignation
 
+//////////////////
+// Clear data
+///////
+delete v; // clears the array, also modifies y
+
 }
 
-
+function g(uint[] storage storageArray) internal {} // when called g(global_array) handing over a reference to global_array
+function h(uint[] memoryArray) {} // when called h(global_array) it creates an independent, temporary copy in memory
 
 // mapping is a solution to use to avoid this mess with the array size
 
