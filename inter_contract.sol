@@ -8,7 +8,9 @@ contract One {
 
 contract Two {
     One one_contra;
-    function setOne(address addr) { one_contra = One(addr); // or one_contra= new one(addr);
+    function setOne(address addr) { one_contra = One(addr); // or one_contra= new one(addr) but you need to define the constructor one(address add);
+
+// // Send ether along with the creation         D newD = (new D).value(amount)(arg); but it is not possible to limit the amount of gas
     }
 
     function callOne() {
