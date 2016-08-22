@@ -8,7 +8,8 @@ contract One {
 
 contract Two {
     One one_contra;
-    function setOne(address addr) { one_contra = One(addr); }
+    function setOne(address addr) { one_contra = One(addr); // or one_contra= new one(addr);
+    }
 
     function callOne() {
       //how to call :
