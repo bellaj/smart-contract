@@ -111,9 +111,8 @@ function payout() only_admin{
     transferTo(payroll[3],b1);
     paied(b1);
 
-balances[address(this)] -= b1_r+b2_r+b3_r; // substract the float point value
-
-         for (uint i = 0; i<payroll.length-1; i++){
+    balances[address(this)] =0; //balances[address(this)]-(b1_r+b2_r+b3_r) substract the float point value
+    for (uint i = 0; i<payroll.length-1; i++){
             payroll[i] = payroll[i+1];
         }
         delete payroll[payroll.length-1];
